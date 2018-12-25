@@ -99,7 +99,7 @@ const log4js=require('./logs');
     //拦截所有地址
     app.all('*',websoket.thishttp);
     //注册代理
-    //app.use(config.tableproxy.intercept,proxy(config.tableproxy.proxy))
+    app.use(config.tableproxy.intercept,proxy(config.tableproxy.proxy))
     //注册next
     app.use(nuxt.render)
      //日志输出
