@@ -22,17 +22,17 @@ module.exports = {
   //服务器配置
   server: {
     port: 3000, //服务端口号
-    host: '192.168.27.47', //服务端端接口地址
+    host: 'localhost', //服务端端接口地址
   }, 
   //AJAX环境配置
   env: {
-    baseUrl: process.env.BASE_URL || 'http://192.168.27.47:3000'
+    baseUrl: process.env.BASE_URL || 'http:/localhost:3000'
   }, 
   //代理地址配置
   tableproxy:{
     intercept:'/api',
     proxy:{  
-        target: 'http://192.168.27.47:8020',  
+        target: 'http://localhost:8020',  
         changeOrigin: true
     }
   },
