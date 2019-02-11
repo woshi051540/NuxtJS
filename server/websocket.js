@@ -5,6 +5,12 @@ const TXmap=require('../plugins/TXmap');
 module.exports={
     socketnum:-1,
     thishttp:function(req,res,next){
+            if(req.originalUrl.indexOf('/api')==0){
+                res.send(JSON.stringify({success:true,type:2,data:[],rows:[],courseTask:[],permissions:{role:null}}));
+                  //next()
+                return;
+            }
+         
             //响应socket
            if(/ceshi1*?/gi.test(req.originalUrl)){
                 //soke广播
@@ -20,10 +26,18 @@ module.exports={
                
                 return;
            }
-           if(req.originalUrl.indexOf(config.tableproxy.intercept)==0){
-                ajax.httprequest(req,(e)=>{
-                    console.log(e)
-                    res.send(e);
+           if(req.originalUrl.indexOf(config.tableproxy.intercept)>0){
+                ajax.httprequest(req,(e)=>{                   
+                    var e=req.socketcz.sendmsg(req.body.wsid,e)
+                    if(res){
+                        if(e==true){                               
+                            res.send('发送成功');
+                        }else{
+                            res.send(e);
+                        }  
+                    }else{
+                        res.send(e);
+                    } 
                 })
                 return ;
            }
@@ -31,9 +45,6 @@ module.exports={
             TXmap.geocoder(req,res)
             return ;
        }
-
-
-
            next()
             
     }

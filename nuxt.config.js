@@ -21,8 +21,8 @@ module.exports = {
   },
   //服务器配置
   server: {
-    port: 3000, //服务端口号
-    host: 'localhost', //服务端端接口地址
+    port: 8892, //服务端口号
+    host: '192.168.27.47', //服务端端接口地址
   }, 
   //AJAX环境配置
   env: {
@@ -40,6 +40,7 @@ module.exports = {
   upload:{
     dest:"./destupload",//上传临时目录
     fileFilter: function (req, file, cb) {
+      console.log(file)
       var typeArray = file.mimetype.split('/');
       var fileType = typeArray[0];
       if (fileType == 'image') {
@@ -48,10 +49,10 @@ module.exports = {
         if(typeArray[1]=='zip' ||typeArray[1]=='rar'||typeArray[1]=='pdf'){
           cb(null, true);
         }else{
-          cb(null, false);
+          cb(null, true);
         }
       }else{
-        cb(null, false)
+        cb(null, true)
       }
     },//文件过滤
     limits:{

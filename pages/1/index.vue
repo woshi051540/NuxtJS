@@ -43,6 +43,7 @@ export default {
       ws:null,
       addrssip:'',
       addrss:'河南省郑州市郑东新区，商务外环20号，海联大厦',
+      wsid:0
     }
   },
   components: {
@@ -76,7 +77,9 @@ export default {
         };      
     },
     ajax(){
-      login({}).then(e=>{
+      var wsid=this.wsid;
+      console.log(wsid)
+      login({wsid:wsid}).then(e=>{
         console.log(e)
       }).catch(e=>{
         console.log(e)

@@ -39,6 +39,7 @@ const log4js=require('./logs');
     
     //全局注册webskoet事件
     app.use(function(req, res, next){
+      
       req.socketcz={
           //指定soket
           sendmsg:function(id,msg){  
@@ -90,7 +91,12 @@ const log4js=require('./logs');
     //图片上传拦截
     if(config.upload!=null){
       //form表单上传
-      app.post('/upload', upload.any(), function (req, res, next) {
+      /*app.post('/upload',function (req, res, next) {
+        
+         uploads.upload(req, res, next)
+      })*/
+     app.post('/upload', upload.any(), function (req, res, next) {
+       
         uploads.upload(req, res, next)
       })
       //form表单上传
@@ -99,7 +105,7 @@ const log4js=require('./logs');
     //拦截所有地址
     app.all('*',websoket.thishttp);
     //注册代理
-    app.use(config.tableproxy.intercept,proxy(config.tableproxy.proxy))
+    //app.use(config.tableproxy.intercept,proxy(config.tableproxy.proxy))
     //注册next
     app.use(nuxt.render)
      //日志输出

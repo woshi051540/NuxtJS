@@ -3,8 +3,11 @@ let config = require('../nuxt.config.js')
 module.exports={   
     //form表单上传
     upload:function(req,res,next){
+        console.log(req.body)
+        console.log(req.files)
         var uploadurl=[];        
-        try{         
+        try{   
+                
             for (var i = 0; i < req.files.length; i++) {
                 var seccess=true;
                 var imgname=new Date().getTime();

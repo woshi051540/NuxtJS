@@ -1,6 +1,7 @@
 const http = require('http');
 const https = require('https');
 let config = require('../nuxt.config.js')
+
 var  apiHost =config.tableproxy.proxy.target.replace('http://','');
 var  port=80;
  if(apiHost.indexOf(':')>0){
